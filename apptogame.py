@@ -5,7 +5,7 @@ import os
 class MyGameHangman():
     def __init__(self) -> None:
         self.error = 0 
-        self.palavra_digitada = " "
+        self.palavra_digitada = ""
         self.exibir_boas_vindas()
 
     def exibir_boas_vindas(self):
@@ -33,6 +33,7 @@ class MyGameHangman():
         self.options()
     
     def options(self):
+        os.system("cls")
         print("( 1 ) - PLAY ")
         print("( 2 ) - EXIT \n")
 
@@ -41,8 +42,7 @@ class MyGameHangman():
             if escolha == "1":
                 os.system("cls")
 
-                print("ESCOLHA A PALAVRA CHAVE: ", end="")
-                self.palavra_chave = input("")
+                self.palavra_chave = input("ESCOLHA A PALAVRA CHAVE: ")
                 self.palavra_list = self.palavra_chave
                 self.palavra_chave_list = ["_"] * len(self.palavra_chave)
                 break
@@ -62,6 +62,7 @@ class MyGameHangman():
                 print("VOCÊ PERDEU KK")
                 escolha_repeticao = input("VOCÊ DESEJA REPETIR(SIM/NÃO): ")
                 if escolha_repeticao.upper() == "SIM" or escolha_repeticao.upper() == "S":
+                   
                     os.system("cls")
                     self.error = 0
                     self.palavra_list = ""
@@ -87,7 +88,6 @@ class MyGameHangman():
 
     def verificar(self, letra):
         if len(letra) == 1:
-    
             confirm_action = False
             self.palavra_digitada = str(self.palavra_digitada + "|" +letra)
 
@@ -104,4 +104,18 @@ class MyGameHangman():
                 self.error = 7
                 os.system("cls")
                 print("TA ESPERTO EIN, PARABENS A PALAVRA ERA:", "".join(self.palavra_chave_list))
-                os.system("pause")
+
+                escolha_repeticao = input("VOCÊ DESEJA REPETIR(SIM/NÃO): ")
+                if escolha_repeticao.upper() == "SIM" or escolha_repeticao.upper() == "S":
+                    os.system("cls")
+                    self.error = 0
+                    self.palavra_list = ""
+                    self.palavra_digitada = ""
+                    self.options()
+                
+        else:
+            os.system("cls")
+            print("FAVOR DIGITAR UM CARACTER!")
+            os.system("pause")
+            os.system("cls")
+            self.starttogame()
