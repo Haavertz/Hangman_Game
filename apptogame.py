@@ -5,7 +5,7 @@ import os
 class MyGameHangman():
     def __init__(self) -> None:
         self.error = 0 
-        self.cont = 0
+        self.palavra_digitada = " "
         self.exibir_boas_vindas()
 
     def exibir_boas_vindas(self):
@@ -50,50 +50,44 @@ class MyGameHangman():
             if escolha == "2":
                 break
 
-        os.system("cls")
         self.starttogame()
+        os.system("cls")
 
 
     def starttogame(self):
+        while True:
+            if self.error == 6:
+                print("VOCÊ PERDEU KK")
+                os.system("pause")
+                break
 
-        self.boneco1 = Boneco()
-        self.boneco1.exibir_forca(0)
-        print(" "*25, " ".join(self.palavra_chave_list))
+            else:        
+                self.bonecao_mandraki = Boneco()
+                self.bonecao_mandraki.exibir_forca(self.error)
+                print(" "*25, " ".join(self.palavra_chave_list))
+                print("\n", " "*25, "PALAVRAS JÁ DIGITADAS: ", self.palavra_digitada)
 
-        print("\n\nDIGITE A LETRA QUE DESEJA: ", end="")
-        letra = input("")
+                print("\nDIGITE A LETRA QUE DESEJA: ", end="")
+                letra = input("")
 
-        self.verificar(letra)
+                os.system("cls")
+                self.verificar(letra)
+                    
 
     def verificar(self, letra):
         if len(letra) == 1:
-            letra_encontrada = 0
+    
+            confirm_action = False
+            self.palavra_digitada = str(self.palavra_digitada + "|" +letra)
 
             for i, j in enumerate(self.palavra_list):
-                if letra == j:
-                    letra_encontrada = 1
+                if letra.upper() == j.upper():
+                    confirm_action = True
                     self.palavra_chave_list[i] = letra
 
-            if letra_encontrada == 1:
-                os.system("cls")
-                self.boneco1.exibir_forca(0)
-                print(" "*25, " ".join(self.palavra_chave_list))
-            else:
-                os.system("cls")
+            if confirm_action == False:
                 self.error += 1
-                self.boneco1.exibir_forca(self.error)
-                print(" "*25, " ".join(self.palavra_chave_list))
-
-            if "_" in self.palavra_chave_list:
-                self.starttogame()
-
-            elif "_" not in self.palavra_chave_list:
-                print("TA ESPERTO EIN, PARABENS A PALAVRA ERÁ: ", "".join(self.palavra_chave_list))
-
-            else:
                 os.system("cls")
-                print("VOCÊ PERDEU O GAME KKKKK")
 
-
-
-MyGameHangman()
+            if "_" not in self.palavra_chave_list:
+                print("\n TA ESPERTO EIN, PARABENS A PALAVRA ERA: ", "".join(self.palavra_chave_list))

@@ -5,7 +5,7 @@ class Boneco():
     def exibir_forca(self, estado):
         parament = estado
 
-        forca = [
+        self.forca = [
             '''
             +---+
             |   |
@@ -76,4 +76,4 @@ class Boneco():
             '''
         ]
 
-        print(forca[parament])
+        print(self.forca[parament])
