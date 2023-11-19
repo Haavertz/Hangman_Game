@@ -56,10 +56,21 @@ class MyGameHangman():
 
     def starttogame(self):
         while True:
+            if self.error == 7:
+                break
             if self.error == 6:
                 print("VOCÊ PERDEU KK")
-                os.system("pause")
-                break
+                escolha_repeticao = input("VOCÊ DESEJA REPETIR(SIM/NÃO): ")
+                if escolha_repeticao.upper() == "SIM" or escolha_repeticao.upper() == "S":
+                    os.system("cls")
+                    self.error = 0
+                    self.palavra_list = ""
+                    self.palavra_digitada = ""
+                    self.options()
+
+                else:
+                    os.system("pause")
+                    break
 
             else:        
                 self.bonecao_mandraki = Boneco()
@@ -90,4 +101,7 @@ class MyGameHangman():
                 os.system("cls")
 
             if "_" not in self.palavra_chave_list:
-                print("\n TA ESPERTO EIN, PARABENS A PALAVRA ERA: ", "".join(self.palavra_chave_list))
+                self.error = 7
+                os.system("cls")
+                print("TA ESPERTO EIN, PARABENS A PALAVRA ERA:", "".join(self.palavra_chave_list))
+                os.system("pause")
