@@ -61,6 +61,7 @@ class MyGameHangman():
                 break
             if self.error == 6:
                 print("VOCÊ PERDEU KK")
+                print("A PALAVRA É: ", self.palavra_list)
                 escolha_repeticao = input("VOCÊ DESEJA REPETIR(SIM/NÃO): ")
                 if escolha_repeticao.upper() == "SIM" or escolha_repeticao.upper() == "S":
                    
