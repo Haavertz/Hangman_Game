@@ -45,6 +45,7 @@ class MyGameHangman():
                 self.palavra_chave = input("ESCOLHA A PALAVRA CHAVE: ")
                 self.palavra_list = self.palavra_chave
                 self.palavra_chave_list = ["_"] * len(self.palavra_chave)
+                os.system("cls")
                 break
                 
             if escolha == "2":
